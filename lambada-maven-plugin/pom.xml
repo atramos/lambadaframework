@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.lambadaframework</groupId>
         <artifactId>lambada</artifactId>
-        <version>0.0.6-cors</version>
+        <version>0.0.6-proxy</version>
     </parent>
 
     <artifactId>lambada-maven-plugin</artifactId>
