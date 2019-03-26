@@ -1,0 +1,27 @@
+{
+    "package": "org.lambadaframework.example.controllers",
+    "pathtemplate": "/{name}",
+    "method": "GET",
+    "requestbody": "{}",
+    "path": {
+        "name": "yyy"
+    },
+    "querystring": {},
+    "header": {
+        "Accept": "*/*",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Host": "wbkuhmeg6e.execute-api.us-west-1.amazonaws.com",
+        "User-Agent": "curl/7.55.1",
+        "Via": "1.1 dd8f9d87a6d86878defca85ee01d6d4e.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "yjWRslnbI-cGRxVQ7JRAWvDCOppUz5hHR6yOEnR615lsEzaA6qr7cw==",
+        "X-Amzn-Trace-Id": "Root=1-5c99c29a-878964ee6c8c353e9f5c1560",
+        "X-Forwarded-For": "99.99.99.99, 70.132.18.81",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    }
+}

@@ -468,7 +468,7 @@ public class ApiGateway extends AWSTools {
                     .withRestApiId(amazonApi.getId())
                     .withResourceId(apiGatewayResource.getId())
                     .withHttpMethod(httpMethod)
-                    .withType(IntegrationType.AWS)
+                    .withType(IntegrationType.AWS_PROXY)
                     .withUri(getFunctionArnForApiGateway())
                     .withIntegrationHttpMethod(INVOCATION_METHOD)
                     .withPassthroughBehavior("NEVER")
