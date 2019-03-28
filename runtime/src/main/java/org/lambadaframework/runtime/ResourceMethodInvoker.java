@@ -163,7 +163,15 @@ public class ResourceMethodInvoker {
         
         logger.debug("Varargs = " + varargs);
         
-        return method.invoke(instance, varargs.toArray());
+        try {
+	        final Object invoke = method.invoke(instance, varargs.toArray());
+	        logger.debug("method return = " + invoke.toString());
+			return invoke;
+        }
+        catch(Throwable e) {
+        	logger.debug("method threw exception = ", e);
+        	throw new RuntimeException(e);
+        }
     }
 
     private static boolean consumesSpecificType(Consumes annotation, List<String> types) {

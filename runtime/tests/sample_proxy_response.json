@@ -1,0 +1,96 @@
+{
+    "context": {
+        "headers": {
+            "Access-Control-Allow-Origin": [
+                "*"
+            ],
+            "X-Test": [
+                "YZ"
+            ]
+        },
+        "entity": {
+            "id": 1,
+            "name": "xxx"
+        },
+        "entityType": "org.lambadaframework.example.controllers.ExampleController$Entity",
+        "entityAnnotations": [],
+        "entityStream": {
+            "closed": false,
+            "committed": false
+        },
+        "length": -1,
+        "language": null,
+        "location": null,
+        "lastModified": null,
+        "date": null,
+        "entityClass": "org.lambadaframework.example.controllers.ExampleController$Entity",
+        "responseCookies": {},
+        "acceptableMediaTypes": [
+            {
+                "type": "*",
+                "subtype": "*",
+                "parameters": {},
+                "quality": 1000,
+                "wildcardType": true,
+                "wildcardSubtype": true
+            }
+        ],
+        "acceptableLanguages": [
+            "*"
+        ],
+        "requestCookies": {},
+        "mediaType": null,
+        "allowedMethods": [],
+        "entityTag": null,
+        "links": [],
+        "stringHeaders": {
+            "Access-Control-Allow-Origin": [
+                "*"
+            ],
+            "X-Test": [
+                "YZ"
+            ]
+        },
+        "committed": false
+    },
+    "status": 201,
+    "length": -1,
+    "language": null,
+    "location": null,
+    "lastModified": null,
+    "date": null,
+    "entity": {
+        "id": 1,
+        "name": "xxx"
+    },
+    "statusInfo": "CREATED",
+    "metadata": {
+        "Access-Control-Allow-Origin": [
+            "*"
+        ],
+        "X-Test": [
+            "YZ"
+        ]
+    },
+    "mediaType": null,
+    "allowedMethods": [],
+    "cookies": {},
+    "entityTag": null,
+    "links": [],
+    "stringHeaders": {
+        "Access-Control-Allow-Origin": [
+            "*"
+        ],
+        "X-Test": [
+            "YZ"
+        ]
+    },
+    "headers": {
+        "Access-Control-Allow-Origin": [
+            "*"
+        ],
+        "X-Test": [
+            "YZ"
+        ]
+    }
+}

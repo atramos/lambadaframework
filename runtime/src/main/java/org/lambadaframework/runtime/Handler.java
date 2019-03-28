@@ -1,7 +1,18 @@
 package org.lambadaframework.runtime;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.InvocationTargetException;
+
+import org.apache.log4j.Logger;
+import org.lambadaframework.jaxrs.model.ResourceMethod;
+import org.lambadaframework.runtime.errorhandling.ErrorHandler;
+import org.lambadaframework.runtime.models.RequestInterface;
+import org.lambadaframework.runtime.models.ResponseProxy;
+import org.lambadaframework.runtime.router.Router;
+
 import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 import com.amazonaws.util.IOUtils;
 import com.amazonaws.util.StringInputStream;
@@ -10,22 +21,13 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.log4j.Logger;
-import org.lambadaframework.jaxrs.model.ResourceMethod;
-import org.lambadaframework.runtime.errorhandling.ErrorHandler;
-import org.lambadaframework.runtime.models.RequestInterface;
-import org.lambadaframework.runtime.models.ResponseProxy;
-import org.lambadaframework.runtime.models.error.ErrorResponse;
-import org.lambadaframework.runtime.router.Router;
-
-import java.io.*;
-import java.lang.reflect.InvocationTargetException;
 
 
 public class Handler implements RequestStreamHandler {
 
     static final Logger logger = Logger.getLogger(Handler.class);
     private Router router;
+	private ObjectMapper objectMapper = new ObjectMapper();
 
 
     public Handler setRouter(Router router) {
@@ -73,11 +75,15 @@ public class Handler implements RequestStreamHandler {
                 ResourceMethod matchedResourceMethod = getRouter().route(req);
                 invoke = ResourceMethodInvoker.invoke(matchedResourceMethod, req, context);
 
+                logger.debug(objectMapper.writeValueAsString(invoke));
+                
                 responseProxy = ResponseProxy.buildFromJAXRSResponse(invoke);
+
+                logger.debug(objectMapper.writeValueAsString(responseProxy));
             }
         } catch (InvocationTargetException ite) {
+            logger.debug("Exception: " + ite.getMessage() + "\n" + ite.getStackTrace());
         	Throwable t = ite.getCause();
-            logger.debug("Exception: " + t.getMessage() + "\n" + t.getStackTrace());
             if (t instanceof Exception) {
             	responseProxy = ErrorHandler.getErrorResponse((Exception) t);
             } else {
@@ -96,6 +102,8 @@ public class Handler implements RequestStreamHandler {
         } catch (Exception e) {
             logger.error("Failed to write response: " + e.getStackTrace());
             throw new RuntimeException("Failed to write response.");
+        } catch (Error e) {
+            logger.debug("Error: " + e.getMessage());
         }
     }
 

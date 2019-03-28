@@ -1,72 +1,89 @@
 <project>
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.lambadaframework</groupId>
-        <artifactId>lambada</artifactId>
-        <version>0.0.6-proxy</version>
-    </parent>
-    <artifactId>runtime</artifactId>
-    <packaging>jar</packaging>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.lambadaframework</groupId>
+		<artifactId>lambada</artifactId>
+		<version>0.0.6-proxy</version>
+	</parent>
+	<artifactId>runtime</artifactId>
+	<packaging>jar</packaging>
 
-    <name>Lambada Runtime Module</name>
+	<name>Lambada Runtime Module</name>
 
-    <dependencies>
-        
-        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-            <scope>test</scope>
-        </dependency>
+	<dependencies>
 
-        <!-- AWS Lambda dependencies -->
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-lambda-java-core</artifactId>
-            <version>1.1.0</version>
-        </dependency>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+			<scope>test</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-s3</artifactId>
-            <version>${aws-sdk.version}</version>
-        </dependency>
+		<!-- AWS Lambda dependencies -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-lambda-java-core</artifactId>
+			<version>1.1.0</version>
+		</dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.7.5</version>
-        </dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>${aws-sdk.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.7.5</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.lambadaframework</groupId>
-            <artifactId>jax-rs-extractor</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.7.5</version>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.lambadaframework</groupId>
+			<artifactId>jax-rs-extractor</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.lambadaframework</groupId>
-            <artifactId>stub-handlers</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>test</scope>
-        </dependency>
-        
-    </dependencies>
-    <build>
-        <testSourceDirectory>${project.basedir}/tests/java</testSourceDirectory>
-    </build>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.7.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.lambadaframework</groupId>
+			<artifactId>stub-handlers</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<testSourceDirectory>${project.basedir}/tests/java</testSourceDirectory>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
 </project>

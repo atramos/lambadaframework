@@ -114,8 +114,10 @@ public final class Router {
     public ResourceMethod route(RequestInterface request)
             throws NotFoundException {
 
-        if (request.getPackage() == null) {
-            throw new NotFoundException("Request should have package attribute: " + request.toString());
+        String pkg = request.getPackage();
+		if (pkg == null) {
+            //throw new NotFoundException("Request should have package attribute: " + request.toString());
+			pkg = "org.lambadaframework.example.controllers"; // FIXME
         }
 
         String cacheKey = calculateCacheKeyForRequest(request);
@@ -129,7 +131,7 @@ public final class Router {
             return foundMethod;
         }
 
-        List<Resource> foundResources = getJAXRSResourcesFromPackage(request.getPackage());
+        List<Resource> foundResources = getJAXRSResourcesFromPackage(pkg);
 
         for (Resource resource : foundResources) {
             for (ResourceMethod resourceMethod : resource.getResourceMethods()) {

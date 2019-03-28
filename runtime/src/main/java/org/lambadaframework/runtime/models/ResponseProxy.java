@@ -33,6 +33,8 @@ public class ResponseProxy implements Serializable {
      */
     protected Object entity;
 
+	private ObjectMapper objectMapper = new ObjectMapper();
+
     public ResponseProxy() {
     }
 
@@ -88,12 +90,16 @@ public class ResponseProxy implements Serializable {
         return this.code;
     }
 
-    public void write(Writer writer) {
+    public void write(Writer writer) throws IOException {
         try {
-            new ObjectMapper().writeValue(writer, this);
+        	if(!(this.entity instanceof String)) {
+        		this.entity = objectMapper.writeValueAsString(this.entity);
+        	}
+            objectMapper.writeValue(writer, this);
             writer.close();
         } catch (IOException e) {
             logger.error(e.getStackTrace());
+            writer.write(e.toString());
         }
     }
 
